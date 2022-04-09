@@ -26,22 +26,26 @@ class Solution {
     }
     */
     public ListNode swapNodes(ListNode head, int k){
-        int N = 0;
-        ListNode curr = head;
-        while(curr != null){
-            curr = curr.next;
-            N++;
-        }
+        
+        //ListNode curr = head;
+    
         ListNode left = head;
+        
         for(int i = 1; i < k; i++){
             left = left.next;
         }
+        
+        ListNode curr = left;
         ListNode right = head;
-        for(int i = 0; i < N-k; i++){
+        //System.out.println(left.val);
+        while(curr.next != null){
             right = right.next;
+            //System.out.println("preRight = ")
+            curr = curr.next;
         }
         
         int temp = left.val;
+        //preRight.val = left.val;
         left.val = right.val;
         right.val = temp;
         
