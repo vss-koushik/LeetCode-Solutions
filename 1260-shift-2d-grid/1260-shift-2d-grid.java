@@ -1,18 +1,22 @@
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
-        int m = grid.length;
-        int n = grid[0].length;
-        int total = m * n;
-        //The key point is to find out the first position after the move
-        int start = total - k % total;
-        List<List<Integer>> res = new ArrayList<>();
-        for (int index = start; index < total + start; index++) {
-            int i = (index % total) / n, j = (index % total) % n;
-            //Each column has n elements
-            if ((index - start) % n == 0)
-                res.add(new ArrayList<>());
-            res.get(res.size() - 1).add(grid[i][j]);
+        //move k times first
+        while (k-- > 0) {
+            int pre = grid[grid.length - 1][grid[0].length - 1];
+            for (int row = 0; row < grid.length; row++) {
+                for (int col = 0; col < grid[0].length; col++) {
+                    //swap with the previous element
+                    int temp = grid[row][col];
+                    grid[row][col] = pre;
+                    pre = temp;
+                }
+            }
         }
-        return res;
+
+        List<List<Integer>> result = new ArrayList<>();
+        for (int[] row : grid) {
+            result.add(Arrays.stream(row).boxed().collect(Collectors.toList()));
+        }
+        return result;
     }
 }
