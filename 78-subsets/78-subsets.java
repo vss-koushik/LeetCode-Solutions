@@ -6,10 +6,10 @@ class Solution {
             ArrayList<Integer> newList = new ArrayList<Integer>();
             //Collections.copy(newList, list);
             int list_size = list.size();
-            for(int i = 0; i < list_size; i++){
-                newList.add(list.get(i));
-            }
-            out_list.add(newList);
+           // for(int i = 0; i < list_size; i++){
+             //   newList.add(list.get(i));
+            //}
+            out_list.add(new ArrayList<Integer>(list));
             if(list == out_list.get(out_list.size()-1))
                 System.out.println("The List and OUT LIST HAVE SAME REFERENCES");
             return;
@@ -24,7 +24,7 @@ class Solution {
         f(list,nums,index+1,n);
     }
     public List<List<Integer>> subsets(int[] nums) {
-        System.out.println(nums.length);
+        //System.out.println(nums.length);
         ArrayList<Integer> list = new ArrayList<Integer>();
         f(list,nums,0,nums.length);
         return out_list;
