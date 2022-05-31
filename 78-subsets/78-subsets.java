@@ -10,8 +10,8 @@ class Solution {
              //   newList.add(list.get(i));
             //}
             out_list.add(new ArrayList<Integer>(list));
-            if(list == out_list.get(out_list.size()-1))
-                System.out.println("The List and OUT LIST HAVE SAME REFERENCES");
+           // if(list == out_list.get(out_list.size()-1))
+             //   System.out.println("The List and OUT LIST HAVE SAME REFERENCES");
             return;
         }
         list.add(nums[index]);
