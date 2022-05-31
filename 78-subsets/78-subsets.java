@@ -32,7 +32,7 @@
     
 } //f([1],nums,1,n)->f([1,2],nums,2)
 */
-
+// Bit Manipulation Solution
 class Solution {
     public boolean checkBit(int i, int j) {
         return (i>>j)%2!=0;
