@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
     private List<List<Integer>> out_list = new ArrayList<>();
     
     private void f(ArrayList<Integer> list, int[] nums, int index, int n){
@@ -31,3 +31,23 @@ class Solution {
     }
     
 } //f([1],nums,1,n)->f([1,2],nums,2)
+*/
+
+class Solution {
+    public boolean checkBit(int i, int j) {
+        return (i>>j)%2!=0;
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList();
+        for(int i = 0; i < (1<<nums.length); i++) {
+            List<Integer> al = new ArrayList();
+            for(int j = 0; j < nums.length;j++) {
+                if(checkBit(i,j)) {
+                    al.add(nums[j]);
+                }
+            }
+            res.add(al);
+        }
+        return res;
+    }
+}
