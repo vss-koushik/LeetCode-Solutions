@@ -4,8 +4,7 @@ class Solution {
         int numsLen = nums.length;
         for(int index = 1; index < numsLen; index++){
             //int numIndex = nums[index]
-            sum += nums[index];
-            nums[index] = sum;
+            nums[index] += nums[index - 1];
         }
         
         return nums;
