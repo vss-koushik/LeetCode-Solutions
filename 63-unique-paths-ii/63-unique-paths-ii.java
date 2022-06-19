@@ -5,7 +5,7 @@ class Solution {
         int[][] dp = new int[m][n];
         for(int[] row : dp)
             Arrays.fill(row,-1);
-        if(obstacleGrid[m-1][n-1] == 1) return 0;
+        if(obstacleGrid[m-1][n-1] == 1  || obstacleGrid[0][0] == 1) return 0;
         return helper(0,0,m,n,obstacleGrid, dp);
     }
     
