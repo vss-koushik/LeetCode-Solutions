@@ -22,7 +22,12 @@ class Solution {
                 
                 currRow[j] = Math.min(diagLeft, Math.min(down, diagRight));
             }
-            dp = currRow;
+            //for(int itr = 0; itr < n; itr++)
+              //  System.out.println(currRow[itr]);
+            //for(int itr = 0; itr < n; itr++)
+              //  System.out.println(dp[itr]);
+            dp = currRow.clone();
+            
         }
         //int min = Integer.MAX_VALUE;
         for(int i = 0; i < n; i++)
