@@ -6,10 +6,27 @@ class Solution {
         for(int[] row : dp)
             Arrays.fill(row,-1);
         for(int i = 0; i < n; i++)
-            min = Math.min(min,helper(0,i,matrix,n,dp));
+            dp[n-1][i] = matrix[n-1][i];
+        for(int i = n - 2; i >= 0; i--){
+            int diagLeft = Integer.MAX_VALUE;
+            int down = diagLeft;
+            int diagRight = diagLeft;
+            for(int j = 0; j < n; j++){
+                if(j > 0)
+                    diagLeft = matrix[i][j] + dp[i + 1][j - 1];
+                down = matrix[i][j] + dp[i + 1][j];
+                if(j < n - 1)
+                    diagRight = matrix[i][j] + dp[i + 1][j + 1];
+                
+                dp[i][j] = Math.min(diagLeft, Math.min(down, diagRight));
+            }
+        }
+        //int min = Integer.MAX_VALUE;
+        for(int i = 0; i < n; i++)
+            min = Math.min(min, dp[0][i]);
         return min;
     }
-    
+    // Memoization Solution
     private int helper(int row, int col, int[][] grid, int n, int[][] dp){
         if(row == n - 1)
             return grid[row][col];
