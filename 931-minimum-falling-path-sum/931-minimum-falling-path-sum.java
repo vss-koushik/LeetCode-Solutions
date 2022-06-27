@@ -2,28 +2,31 @@ class Solution {
     public int minFallingPathSum(int[][] matrix) {
         int n = matrix.length;
         int min = Integer.MAX_VALUE;
-        int[][] dp = new int[n][n];
-        for(int[] row : dp)
-            Arrays.fill(row,-1);
+        int[] dp = new int[n];
+        //for(int[] row : dp)
+          //  Arrays.fill(row,-1);
+        Arrays.fill(dp, -1);
         for(int i = 0; i < n; i++)
-            dp[n-1][i] = matrix[n-1][i];
+            dp[i] = matrix[n-1][i];
         for(int i = n - 2; i >= 0; i--){
             int diagLeft = Integer.MAX_VALUE;
             int down = diagLeft;
             int diagRight = diagLeft;
+            int[] currRow = new int[n];
             for(int j = 0; j < n; j++){
                 if(j > 0)
-                    diagLeft = matrix[i][j] + dp[i + 1][j - 1];
-                down = matrix[i][j] + dp[i + 1][j];
+                    diagLeft = matrix[i][j] + dp[j - 1];
+                down = matrix[i][j] + dp[j];
                 if(j < n - 1)
-                    diagRight = matrix[i][j] + dp[i + 1][j + 1];
+                    diagRight = matrix[i][j] + dp[j + 1];
                 
-                dp[i][j] = Math.min(diagLeft, Math.min(down, diagRight));
+                currRow[j] = Math.min(diagLeft, Math.min(down, diagRight));
             }
+            dp = currRow;
         }
         //int min = Integer.MAX_VALUE;
         for(int i = 0; i < n; i++)
-            min = Math.min(min, dp[0][i]);
+            min = Math.min(min, dp[i]);
         return min;
     }
     // Memoization Solution
