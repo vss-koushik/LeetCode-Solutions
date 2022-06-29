@@ -8,10 +8,24 @@ class Solution {
             Arrays.fill(row, -1);
         
         for(int i = 0; i < n; i++)
-            min = Math.min(min, helper(0,i,grid,moveCost,n,m,dp));
+            dp[m - 1][i] = grid[m-1][i];
+        
+        for(int i = m - 2; i >= 0; i--){
+            for(int j = 0; j < n; j++){
+                int val = grid[i][j];
+                int mindp = Integer.MAX_VALUE;
+                for(int ind = 0; ind < n; ind++){
+                    mindp = Math.min(mindp, val + moveCost[val][ind] + dp[i + 1][ind]);
+                }
+                dp[i][j] = mindp;
+            }
+        }
+        //int min = Integer.MAX_VALUE;
+        for(int i = 0; i < n; i++)
+            min = Math.min(min, dp[0][i]);
         return min;
     }
-    
+    // Memoization
     private int helper(int i, int j, int[][] grid, int[][] moveCost, int n, int m, int[][] dp){
         if(i == m - 1)
             return grid[i][j];
