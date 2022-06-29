@@ -3,26 +3,27 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         int min = Integer.MAX_VALUE;
-        int[][] dp = new int[m][n];
-        for(int[] row : dp)
-            Arrays.fill(row, -1);
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1);
+        int[] currentRow = new int[n];
         
         for(int i = 0; i < n; i++)
-            dp[m - 1][i] = grid[m-1][i];
+            dp[i] = grid[m-1][i];
         
         for(int i = m - 2; i >= 0; i--){
             for(int j = 0; j < n; j++){
                 int val = grid[i][j];
                 int mindp = Integer.MAX_VALUE;
                 for(int ind = 0; ind < n; ind++){
-                    mindp = Math.min(mindp, val + moveCost[val][ind] + dp[i + 1][ind]);
+                    mindp = Math.min(mindp, val + moveCost[val][ind] + dp[ind]);
                 }
-                dp[i][j] = mindp;
+                currentRow[j] = mindp;
             }
+            dp = currentRow.clone();
         }
         //int min = Integer.MAX_VALUE;
         for(int i = 0; i < n; i++)
-            min = Math.min(min, dp[0][i]);
+            min = Math.min(min, dp[i]);
         return min;
     }
     // Memoization
