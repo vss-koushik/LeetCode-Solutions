@@ -1,6 +1,6 @@
 class Solution {
     public boolean canPartition(int[] nums) {
-        Set<Integer> set = new HashSet<Integer>();
+        // Set<Integer> set = new HashSet<Integer>();
         int n = nums.length;
         int sum = 0;
         for(int num : nums)
