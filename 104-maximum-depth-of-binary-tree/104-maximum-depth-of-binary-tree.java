@@ -20,6 +20,6 @@ class Solution {
         int lh = 1 + maxDepth(root.left);
         int rh = 1 + maxDepth(root.right);
         
-        return Math.max(lh,rh);
+        return Math.max(lh, rh);
     }
 }
