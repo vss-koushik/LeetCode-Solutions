@@ -14,12 +14,25 @@
  * }
  */
 class Solution {
-    public int maxDepth(TreeNode root) {
+    public int minDepth(TreeNode root) {
+        // BFS solution
         if(root == null) return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int depth = 0;
+        while(q.isEmpty() == false){
+            int len = q.size();
+            // TreeNode node = q.remove();
+            depth++;
+            for(int i = 0; i < len; i++){
+                TreeNode node = q.remove();
+                if(node.left == null && node.right == null) return depth;
+                
+                if(node.left != null) q.add(node.left);
+                if(node.right != null) q.add(node.right);
+            }
+        }
         
-        int lh = 1 + maxDepth(root.left);
-        int rh = 1 + maxDepth(root.right);
-        
-        return Math.max(lh,rh);
+        return depth;
     }
 }
